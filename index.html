@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vikings Util</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="container-fluid text-bg-dark py-3 shadow-lg mb-5">
+    <header class="container d-flex justify-content-between align-items-center ">
+      <h1>
+        <a href="#" class="text-decoration-none">Vikings Utils</a>
+      </h1>
+      <nav class="">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a href="#" class="nav-link link-secondary">Home</a>
+          </li>
+          <li class="nav-item">
+            <a href="#calculadora-recursos" class="nav-link link-body-emphasis">Menu2</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
+  <!-- End header -->
+
+  <!-- Main -->
+  <main class="container">
+    <!-- Toast -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="me-auto">Bootstrap</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          Hello, world! This is a toast message.
+        </div>
+      </div>
+    </div>
+    <!-- End Toast -->
+
+    <div class="row border-1">
+      <div class="d-flex justify-content-center border-bottom mb-3">
+        <h1>Inicio</h1>
+      </div>
+
+      <div>
+        <h2>
+          Calculadora-recursos
+          <a id="calculadora-recursos" class="anchor-link" href="#calculadora-recursos"></a>
+        </h2>
+        <p>Usa las entradas de recursos para calcular la cantidad de los objetos de impulsos del recurso especifico
+          necesarios para obtener la cantidad que quieres</p>
+        <div class="bg-success-subtle text-success border-start border-4 border-success ps-4">
+          <p class="py-4 pe-2">
+            <strong>Nota:</strong> En el input debes poner la cantidad total que quieres.
+            Hay reglas en la entrada de la cantidad debe seguir un formato especifico. No se aceptan valores negativos,
+            ni cero en el inicio. Se corrige las entradas mediante eventos de escucha eliminando y limpiando elementos
+            innecesarios o que imposibiliten el calculo automatico. <br>
+            <strong>Ejemplo:</strong> 1, 1500, 1.5k, 1.5m, 1.5b, 1.5t <br>
+            -Las siglas <strong>(k, m, b, t)</strong> son opcionales y significan: <br>
+            <strong>k = 1,000 </strong> <strong class="ps-3">m = 1,000,000</strong> <strong class="ps-3">b =
+              1,000,000,000</strong> <strong>t = 1,000,000,000,000</strong> <br>
+            -Por cada grupo de impulso se calculara la cantidad necesaria para obtener la cantidad total deseada.
+          </p>
+        </div>
+      </div>
+
+      <!-- Contenedor de los Inputs Calculadora-Recursos -->
+      <div id="input-container-CR" class="d-flex justify-content-evenly flex-wrap gap-5">
+        <!-- card comida -->
+        <div class="card col-5">
+          <div class="card-body shadow">
+            <div class="d-flex">
+              <img class="my-2 me-1" src="./img/recursos_miniaturas/comida.png" alt="Miniatura Comida"
+                style="width: 40px; height: 40px;">
+              <div class="form-floating mb-3 w-100">
+                <input type="text" class="form-control" id="input-comida" placeholder="Comida"
+                  title="Ingrese un número válido, con letras opcionales al final: k, m, b, t." min="1"
+                  aria-describedby="input-comida-feedback">
+                <label for="input-comida">
+                  <span>Comida</span>
+                </label>
+                <div id="input-comida-feedback" class="invalid-feedback">
+                  Mensaje de Error Aqui
+                </div>
+              </div>
+            </div>
+
+            <ul id="list-cr-comida" class="d-flex flex-wrap justify-content-between p-0 mb-0">
+              <!-- Aqui van los elemenos li Creados automaticos para esta lista -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- card madera -->
+        <div class="card col-5">
+          <div class="card-body shadow">
+            <div class="d-flex">
+              <img class="my-2 me-1" src="./img/recursos_miniaturas/madera.png" alt="Miniatura Madera"
+                style="width: 40px; height: 40px;">
+              <div class="form-floating mb-3 w-100">
+                <input type="text" class="form-control" id="input-madera" placeholder="Madera"
+                  title="Ingrese un número válido, con letras opcionales al final: k, m, b, t." min="1"
+                  aria-describedby="input-madera-feedback">
+                <label for="input-madera">
+                  <span>Madera</span>
+                </label>
+                <div id="input-madera-feedback" class="invalid-feedback">
+                  Mensaje de Error Aqui
+                </div>
+              </div>
+            </div>
+
+            <ul id="list-cr-madera" class="d-flex flex-wrap justify-content-between p-0 mb-0">
+              <!-- Aqui van los elemenos li Creados automaticos para esta lista -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- card hierro -->
+        <div class="card col-5">
+          <div class="card-body shadow">
+            <div class="d-flex">
+              <img class="my-2 me-1" src="./img/recursos_miniaturas/hierro.png" alt="Miniatura Hierro"
+                style="width: 40px; height: 40px;">
+              <div class="form-floating mb-3 w-100">
+                <input type="text" class="form-control" id="input-hierro" placeholder="Hierro"
+                  title="Ingrese un número válido, con letras opcionales al final: k, m, b, t." min="1"
+                  aria-describedby="input-hierro-feedback">
+                <label for="input-hierro">
+                  <span>Hierro</span>
+                </label>
+                <div id="input-hierro-feedback" class="invalid-feedback">
+                  Mensaje de Error Aqui
+                </div>
+              </div>
+            </div>
+
+            <ul id="list-cr-hierro" class="d-flex flex-wrap justify-content-between p-0 mb-0">
+              <!-- Aqui van los elemenos li Creados automaticos para esta lista -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- card piedra -->
+        <div class="card col-5">
+          <div class="card-body shadow">
+            <div class="d-flex">
+              <img class="my-2 me-1" src="./img/recursos_miniaturas/piedra.png" alt="Miniatura Piedra"
+                style="width: 40px; height: 40px;">
+              <div class="form-floating mb-3 w-100">
+                <input type="text" class="form-control" id="input-piedra" placeholder="Piedra"
+                  title="Ingrese un número válido, con letras opcionales al final: k, m, b, t." min="1"
+                  aria-describedby="input-piedra-feedback">
+                <label for="input-piedra">
+                  <span>Piedra</span>
+                </label>
+                <div id="input-piedra-feedback" class="invalid-feedback">
+                  Mensaje de Error Aqui
+                </div>
+              </div>
+            </div>
+
+            <ul id="list-cr-piedra" class="d-flex flex-wrap justify-content-between p-0 mb-0">
+              <!-- Aqui van los elemenos li Creados automaticos para esta lista -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- card plata -->
+        <div class="card col-5 mb-5">
+          <div class="card-body shadow">
+            <div class="d-flex">
+              <img class="my-2 me-1" src="./img/recursos_miniaturas/plata.png" alt="Miniatura Plata"
+                style="width: 40px; height: 40px;">
+              <div class="form-floating mb-3 w-100">
+                <input type="text" class="form-control" id="input-plata" placeholder="Plata"
+                  title="Ingrese un número válido, con letras opcionales al final: k, m, b, t." min="1"
+                  aria-describedby="input-plata-feedback">
+                <label for="input-plata">
+                  <span>Plata</span>
+                </label>
+                <div id="input-plata-feedback" class="invalid-feedback">
+                  Mensaje de Error Aqui
+                </div>
+              </div>
+            </div>
+
+            <ul id="list-cr-plata" class="d-flex flex-wrap justify-content-between p-0 mb-0">
+              <!-- Aqui van los elemenos li Creados automaticos para esta lista -->
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+  <!-- End Main -->
+
+  <!-- Script Personalizado -->
+  <script src="./js/scripts.js"></script>
+</body>
+
+</html>
