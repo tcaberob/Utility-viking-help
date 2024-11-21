@@ -376,7 +376,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Event to validate the input event within the resource calculator inputs
   inputContCR.addEventListener('input', e => {
     if (!patternInputResources.test(e.target.value)) {
-      showFeedback(e.target, 'Valor no válido, no cumple con el formato requerido');
+      showFeedback(e.target, 'Invalid value, does not meet the required format');
       addAnimationShakeHorizontal(e.target);
     } else {
       showFeedback(e.target, '', true);
