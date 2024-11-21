@@ -343,8 +343,30 @@ document.addEventListener('DOMContentLoaded', function () {
       if ((e.target.selectionStart === 0 && !patternInputResources.test(clipboardData)) ||
         !(/^[0-9]\d*(?:\.\d{1,2})?([kmbt])?$/i.test(clipboardData))) {
         e.preventDefault();
-        liveToast.querySelector('.toast-header strong').textContent = 'Paste no complete: ' + e.target.id;
-        liveToast.querySelector('.toast-body').textContent = 'Valor no válido: (' + clipboardData + '), no cumple con el formato requerido';
+        const userLang = navigator.language || navigator.userLanguage;
+        let errorMessage = {
+          en: {
+            header: 'Paste Error',
+            body: `
+              <strong>Field:</strong> ${e.target.id}<br>
+              <strong>Invalid value:</strong> ${clipboardData}<br>
+              <span>Does not meet the required format.</span>
+            `
+          },
+          es: {
+            header: 'Error de Pegado',
+            body: `
+              <strong>Campo:</strong> ${e.target.id}<br>
+              <strong>Valor inválido:</strong> ${clipboardData}<br>
+              <span>No cumple con el formato requerido.</span>
+            `
+          }
+        };
+
+        let message = errorMessage[userLang.startsWith('es') ? 'es' : 'en'];
+
+        liveToast.querySelector('.toast-header strong').textContent = message.header;
+        liveToast.querySelector('.toast-body').innerHTML = message.body;
         toastBootstrap.show();
         addAnimationShakeHorizontal(e.target);
       }
